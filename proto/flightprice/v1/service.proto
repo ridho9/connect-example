@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package flightprice.v1;
+
+import "common/common.proto";
+import "google/api/annotations.proto";
+
+option go_package = "project/gen/flightprice/v1;flightpricev1";
+
+service FlightService {
+  rpc Hello(common.NoRequest) returns (HelloResponse) {
+    option (google.api.http) = {get: "/api/v1/hello"};
+  }
+}
+
+message HelloResponse {
+  string text = 1;
+}

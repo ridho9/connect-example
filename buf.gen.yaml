@@ -1,0 +1,14 @@
+version: v2
+clean: true
+managed:
+  enabled: true
+plugins:
+  # - local: protoc-gen-go
+  - remote: buf.build/protocolbuffers/go:v1.33.0 # Use latest stable version
+    out: gen
+    opt: paths=source_relative
+
+  # - local: protoc-gen-connect-go
+  - remote: buf.build/connectrpc/go:v1.18.1 # Use latest stable version
+    out: gen
+    opt: paths=source_relative
