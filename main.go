@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"project/gen/flightprice/v1/flightpricev1connect"
-	"project/service/flightprice"
+	"project/gen/api/v1/apiv1connect"
+	"project/service/api"
 	"syscall"
 	"time"
 
@@ -17,12 +17,12 @@ import (
 
 //go:generate buf generate
 func main() {
-	flightPriceService := flightprice.NewService()
+	apiService := api.NewService()
 
 	mux := http.NewServeMux()
 
 	vanguardServices := []*vanguard.Service{
-		vanguard.NewService(flightpricev1connect.NewFlightServiceHandler(flightPriceService)),
+		vanguard.NewService(apiv1connect.NewApiServiceHandler(apiService)),
 	}
 	transcoder, err := vanguard.NewTranscoder(
 		vanguardServices,
